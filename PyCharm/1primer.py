@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 import sys
-from datetime import date
 
 def get_worker():
     """
@@ -10,6 +10,7 @@ def get_worker():
     name = input("Фамилия и инициалы? ")
     post = input("Должность? ")
     year = int(input("Год поступления? "))
+
     # Создать словарь.
     return {
         'name': name,
@@ -41,6 +42,7 @@ def display_workers(staff):
             )
         )
         print(line)
+
         # Вывести данные о всех сотрудниках.
         for idx, worker in enumerate(staff, 1):
             print(
@@ -53,12 +55,15 @@ def display_workers(staff):
             )
         print(line)
         print("Список работников пуст.")
+
+
 def select_workers(staff, period):
     """
     Выбрать работников с заданным стажем.
     """
     # Получить текущую дату.
     today = date.today()
+
     # Сформировать список работников.
     result = []
     for employee in staff:
@@ -67,6 +72,7 @@ def select_workers(staff, period):
 
     # Возвратить список выбранных работников.
     return result
+
 
 def main():
         """
@@ -79,8 +85,10 @@ def main():
             # Запросить команду из терминала.
             command = input(">>> ").lower()
             # Выполнить действие в соответствие с командой.
+
             if command == 'exit':
                 break
+
             elif command == 'add':
                 # Запросить данные о работнике.
                 worker = get_worker()
@@ -89,9 +97,11 @@ def main():
                 # Отсортировать список в случае необходимости.
                 if len(workers) > 1:
                      workers.sort(key=lambda item: item.get('name', ''))
+
             elif command == 'list':
                 # Отобразить всех работников.
                 display_workers(workers)
+
             elif command.startswith('select '):
                 # Разбить команду на части для выделения стажа.
                 parts = command.split(' ', maxsplit=1)
@@ -101,6 +111,7 @@ def main():
                 selected = select_workers(workers, period)
                 # Отобразить выбранных работников.
                 display_workers(selected)
+
             elif command == 'help':
                 # Вывести справку о работе с программой.
                 print("Список команд:\n")
@@ -109,8 +120,10 @@ def main():
                 print("select <стаж> - запросить работников со стажем;")
                 print("help - отобразить справку;")
                 print("exit - завершить работу с программой.")
+
             else:
                 print(f"Неизвестная команда {command}", file=sys.stderr)
+
 
 if __name__ == '__main__':
     main()

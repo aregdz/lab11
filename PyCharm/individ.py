@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 import sys
+
 def help1():
     """"
     Функция для вывода списка команд
@@ -12,6 +14,7 @@ def help1():
     print("select <тип> - вывод на экран пунктов назначения и номеров рейсов для данного типа самолёта")
     print("help - отобразить справку;")
     print("exit - завершить работу с программой.")
+
 
 def add1():
     """"
@@ -27,12 +30,16 @@ def add1():
         'number': number,
         'tip': tip,
     }
+
     return i
+
+
 def error1():
     """"
     функция для неопознанных команд
     """
     print(f"Неизвестная команда {command}")
+
 
 def list(aircrafts):
     """"
@@ -46,6 +53,7 @@ def list(aircrafts):
         '-' * 8
     )
     print(line)
+
     # Вывести данные о всех сотрудниках.
     for idx, i in enumerate(aircrafts, 1):
         print(
@@ -58,6 +66,7 @@ def list(aircrafts):
         )
     print(line)
 
+
 def select(command, aircrafts):
     """""
     Функция для получения номера рейса и пункта назначения по заднному типу самолёта.
@@ -66,6 +75,7 @@ def select(command, aircrafts):
     parts = command.split(' ', maxsplit=1)
     # Проверить сведения работников из списка.
     count = 0
+
     for i in aircrafts:
         for k, v in i.items():
 
@@ -77,6 +87,7 @@ def select(command, aircrafts):
 
     if count == 0:
         print("Рейс с заданным типом самолёта не найден.")
+
 
 def main():
     """"
