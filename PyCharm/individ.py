@@ -72,14 +72,14 @@ def select(command, aircrafts):
     Функция для получения номера рейса и пункта назначения по заднному типу самолёта.
     """
     # Разбить команду на части для выделения номера года.
-    parts = command.split(' ', maxsplit=1)
+    parts = input("Введите значение: ")
     # Проверить сведения работников из списка.
     count = 0
 
     for i in aircrafts:
         for k, v in i.items():
 
-            if v == parts[1]:
+            if v == parts:
                 print("Пункт назначения - ", i["name"])
                 print("Номер рейса - ", i["number"])
                 count += 1
@@ -107,28 +107,29 @@ def main():
         command = input(">>> ").lower()
         # Выполнить действие в соответствие с командой.
 
-        if command == 'exit':
-            break
+        match command:
+            case 'exit':
+                break
 
-        elif command == 'add':
-            # Добавить словарь в список.
-            i = add1()
-            aircrafts.append(i)
-            # Отсортировать список в случае необходимости.
-            if len(aircrafts) > 1:
-                aircrafts.sort(key=lambda item: item.get('name', ''))
+            case 'add':
+                # Добавить словарь в список.
+                i = add1()
+                aircrafts.append(i)
+                # Отсортировать список в случае необходимости.
+                if len(aircrafts) > 1:
+                    aircrafts.sort(key=lambda item: item.get('name', ''))
 
-        elif command == 'list':
-            list(aircrafts)
+            case 'list':
+                list(aircrafts)
 
-        elif command.startswith('select '):
-            select(command, aircrafts)
+            case 'select':
+                select(command, aircrafts)
 
-        elif command == 'help':
-            help1()
+            case 'help':
+                help1()
 
-        else:
-            error1()
+            case _:
+                error1()
 
 
 if __name__ == '__main__':
